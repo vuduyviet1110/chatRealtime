@@ -1,0 +1,15 @@
+const express = require("express");
+const authController = require("../controllers/auth.controller");
+const router = express.Router();
+require("passport");
+require("../middleware/authGg");
+router.get("/", authController.loginSuccess);
+router.post("/login", authController.login);
+router.get("/login/failed", authController.loginFailed);
+router.get("/login/google", authController.loginGg);
+router.get("/google/callback", authController.loginCallback);
+router.post("/sign-up", authController.signup);
+router.post("/logout", authController.logOut);
+router.post("/logout/google", authController.logOutGg);
+router.post("/resfreshToken", authController.refreshToken);
+module.exports = router;
